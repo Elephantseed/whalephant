@@ -1,14 +1,12 @@
-# Elephant Seed 
+# Whalephant Seed 
 
 [![oficial site](https://img.shields.io/badge/sloppy-lopez-pink.svg)](http://sloppylopez.com)
 [![built without gulp](https://img.shields.io/badge/build%20without-gulp-brightgreen.svg)](http://jspm.com)
 ![Dependencies](https://david-dm.org/sloppylopez/elephantseed.svg)
-[![CircleCI](https://circleci.com/gh/sloppylopez/elephantseed.svg?style=svg)](https://circleci.com/gh/sloppylopez/elephantseed)
+[![CircleCI](https://circleci.com/gh/Elephantseed/whalephant.svg?style=svg)](https://circleci.com/gh/Elephantseed/whalephant)
 
-[![Elephant Seed](https://raw.githubusercontent.com/sloppylopez/slush-jspm-react-seed/master/templates/assets/images/ElephantSeed.png)](https://elephantseed.firebaseapp.com)
+[![Elephant Seed](https://github.com/Elephantseed/whalephant/blob/master/templates/assets/images/ElephantSeed.png)](https://elephantseed.firebaseapp.com)
  
-### Vaseline driven browser side boiler-plate annihilation. Period
-
 #### Features working out-of-the-box
 
         NEW! Added Docker support
@@ -57,13 +55,13 @@ $ npm install -g slush-jspm-react-seed
 * Create a new folder for your project:
 
 ```bash
-$ mkdir my-elephant-seed
+$ mkdir my-whalephant-seed
 ```
 
 * Run the generator from within the new folder and download deps after:
 
 ```bash
-$ cd my-elephant-seed
+$ cd my-whalephant-seed
 $ slush jspm-react-seed
 $ npm run init
 ```
