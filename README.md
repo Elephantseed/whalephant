@@ -7,7 +7,7 @@
 
 [![Elephant Seed](https://github.com/Elephantseed/whalephant/blob/master/templates/assets/images/ElephantSeed.png)](https://elephantseed.firebaseapp.com)
  
-#### Features working out-of-the-box
+#### Features out-of-the-box
 
         NEW! Added Docker support
         
@@ -28,19 +28,19 @@
         
         Use NodeJS packages (>= 300000 available)
         
-        JSPM for universal multi-purpose Javascript package managing
+        JSPM for universal Javascript package managing
 
         ES6 & ES7 Syntactic Sugar ready out-of-the-box
 
         Bundling & Minifying (JSPM native)
         
-        NodeSASS for doing scss2css 
+        NodeSASS for scss2css 
         
         Added 7 to 1 for managing styles 
         https://github.com/HugoGiraudel/sass-boilerplate
 
         No Grunt/Gulp/Broccoli/Cake/Whatever... needed at the time of writing, 
-        let's see if we can build the whole seed without them (challenge accepted)
+        let's see if we can build the whole seed without them.
         
 
 #### Getting Started
