@@ -1,0 +1,62 @@
+{
+  "name": "docker-nginx-node",
+  "version": "2.1.0",
+  "description": "Docker Nginx Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "npm run start:node",
+    "init": "bin/utils/init",
+    "build:jspm": "bin/jspm/build",
+    "bundle:jspm": "bin/jspm/bundle",
+    "unbundle:jspm": "bin/jspm/unbundle",
+    "minify:jspm": "bin/jspm/minify",
+    "minifysfx:jspm": "bin/jspm/minifysfx",
+    "depcache:jspm": "bin/jspm/depcache",
+    "cacheclear:jspm": "bin/jspm/cacheclear",
+    "lookup:jspm": "bin/jspm/lookup",
+    "cleantree:jspm": "bin/jspm/cleantree",
+    "dev:node": "bin/node/dev",
+    "prod:node": "bin/node/prod",
+    "start:node": "bin/node/start",
+    "stop:node": "bin/node/stop",
+    "buildcss:nodesass": "bin/nodesass/buildcss",
+    "dev:docker": "bin/docker/dev",
+    "prod:docker": "bin/docker/prod",
+    "start:docker": "bin/docker/start",
+    "stop:docker": "bin/docker/stop",
+    "build:docker": "bin/docker/build",
+    "clean:docker": "bin/docker/clean",
+    "exec:docker": "bin/docker/exec",
+    "enter:docker": "bin/docker/enter",
+    "clean-volume:docker": "bin/docker/clean-volume",
+    "standalone-node:docker": "bin/docker/standalone-node",
+    "check:eslint": "bin/eslint/check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sloppylopez/elephantseed.git"
+  },
+  "keywords": [
+    "docker",
+    "nginx",
+    "node",
+    "jspm",
+    "react",
+    "slushgenerator",
+    "slush"
+  ],
+  "author": "Sloppy Lopez",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "browser-sync": "^2.18.13",
+    "chalk": "^2.1.0",
+    "eslint": "^4.5.0",
+    "eslint-plugin-react": "^7.3.0",
+    "express": "^4.15.2",
+    "jspm": "^0.16.53",
+    "rimraf": "^2.6.1",
+    "shelljs": "^0.7.8"
+  }
+}
