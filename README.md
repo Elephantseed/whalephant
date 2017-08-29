@@ -5,7 +5,7 @@
 ![Dependencies](https://david-dm.org/sloppylopez/elephantseed.svg)
 [![CircleCI](https://circleci.com/gh/Elephantseed/whalephant.svg?style=svg)](https://circleci.com/gh/Elephantseed/whalephant)
 
-[![Elephant Seed](https://github.com/Elephantseed/whalephant/blob/master/templates/assets/images/ElephantSeed.png)](https://elephantseed.firebaseapp.com)
+[![Elephant Seed](https://github.com/Elephantseed/whalephant/blob/master/templates/assets/images/ElephantSeed.png?raw=true)](https://elephantseed.firebaseapp.com)
  
 #### Features out-of-the-box
 
