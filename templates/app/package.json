@@ -1,7 +1,7 @@
 {
-  "name": "docker-nginx-node",
+  "name": "whalephant",
   "description": "Slush for scaffolding, Jspm for packaging, React as templating framework",
-  "version": "2.1.2",
+  "version": "1.0.0",
   "homepage": "https://github.com/sloppylopez/elephantseed",
   "author": {
     "name": "Sergio Lopez",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sloppylopez/elephantseed.git"
+    "url": "git://github.com/Elephantseed/whalephant.git"
   },
   "bugs": {
-    "url": "https://github.com/sloppylopez/elephantseed/issues"
+    "url": "https://github.com/Elephantseed/whalephant/issues"
   },
   "jspm": {
-    "main": "./app.js",
+    "main": "app.js",
     "dependencies": {
       "classnames": "npm:classnames@^2.2.1",
       "css": "github:systemjs/plugin-css@^0.1.20",

@@ -9,17 +9,17 @@ bs.init(null, {
     "open": "local",
     "port": BS_PORT,
     "https": {
-        "key": "./server/nginx/certs/docker.nginx.node.com.key",
-        "cert": "./server/nginx/certs/docker.nginx.node.com.crt"
+        "key": "server/nginx/certs/whalephant.key",
+        "cert": "server/nginx/certs/whalephant.crt"
     },
     "watchOptions": {
         "ignoreInitial": true
     },
     "files": [
-        "./app/index.html",
-        "./app/stylesheets/*.css",
+        "app/index.html",
+        "app/stylesheets/*.css",
         {
-            "match": ["./app/components"],
+            "match": ["app/components"],
             "fn": (event, file) => {
                 // TODO improve the number of files reloaded
                 // making it smarter and using aritmetic jspm
@@ -27,7 +27,7 @@ bs.init(null, {
             }
         },
         {
-            "match": ["./app/stylesheets/**/*.scss"],
+            "match": ["app/stylesheets/**/*.scss"],
             "fn": (event, file) => {
                 reload.css(event, file);
             }

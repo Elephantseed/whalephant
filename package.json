@@ -1,7 +1,7 @@
 {
-  "name": "slush-jspm-react-seed",
+  "name": "slush-whalephant",
   "description": "Slush for scaffolding, Jspm for packaging, React for templating framework",
-  "version": "2.1.2",
+  "version": "1.0.0",
   "homepage": "https://elephantseed.firebaseapp.com",
   "author": {
     "name": "Sergio Lopez",
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/sloppylopez/slush-jspm-react-seed.git"
+    "url": "git://github.com/Elephantseed/whalephant.git"
   },
   "bugs": {
-    "url": "https://github.com/sloppylopez/slush-jspm-react-seed/issues"
+    "url": "https://github.com/Elephantseed/whalephant/issues"
   },
   "license": "MIT",
   "main": "slushfile.js",

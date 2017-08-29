@@ -1,0 +1,7 @@
+set -e
+npm link .
+npm install -g whalephant
+rm -rf whalephant-seed/ || echo 'No whalephant-seed found to remove'
+mkdir whalephant-seed/
+cd whalephant-seed
+slush whalephant

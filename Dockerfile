@@ -1,4 +1,4 @@
-FROM node:6.10.1
+FROM node:alpine
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
@@ -14,9 +14,10 @@ LABEL vendor=SloppyLopez\
 RUN useradd -ms /bin/bash $USER
 
 #Copy files to container
-COPY package.json yarn.lock $HOME/
-ADD server/ $HOME/server
-COPY app/package.json app/yarn.lock app/config.js $HOME/app/
+
+#COPY package.json yarn.lock $HOME/
+#ADD server/ $HOME/server
+#COPY app/package.json app/yarn.lock app/config.js $HOME/app/
 RUN chown -R $USER:$USER $HOME/*
 
 WORKDIR $HOME
@@ -29,8 +30,8 @@ RUN npm i yarn@$YARN_VERSION &&\
 #Install App dependencies
 RUN cd app &&\
     yarn &&\
-    ./node_modules/.bin/jspm config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
-    ./node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
-    ./node_modules/.bin/jspm i --lock
+    node_modules/.bin/jspm config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
+    node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
+    node_modules/.bin/jspm i --lock
 
 CMD ["npm", "start"]

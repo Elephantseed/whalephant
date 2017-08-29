@@ -2,7 +2,7 @@
 import React from "react";
 
 // eslint-disable-next-line 
-import Navbar from "components/nav_bar/nav-bar.js";
+import Navbar from "components/nav-bar/nav-bar.js";
 // eslint-disable-next-line 
 import Body from "components/body/body.js";
 // eslint-disable-next-line 

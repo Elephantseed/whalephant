@@ -1,3 +1,2 @@
-cd app &&\
-./node_modules/.bin/rimraf ./dist/bundle.js ./dist/bundle.js.map &&\
-./node_modules/.bin/jspm unbundle
+app/node_modules/.bin/rimraf ./dist/bundle.js ./dist/bundle.js.map &&\
+app/node_modules/.bin/jspm unbundle

@@ -29,8 +29,8 @@ RUN npm i yarn@$YARN_VERSION &&\
 #Install App dependencies
 RUN cd app &&\
     yarn &&\
-    ./node_modules/.bin/jspm config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
-    ./node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
-    ./node_modules/.bin/jspm i --lock
+    node_modules/.bin/jspm config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
+    node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
+    node_modules/.bin/jspm i --lock
 
 CMD ["npm", "start"]

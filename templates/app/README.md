@@ -50,7 +50,7 @@ $ docker-compose run --rm node-server /bin/bash -c 'echo "I am inside the contai
 ```
 
 ### Application Home page
-[https://docker.nginx.node.com](#https://docker.nginx.node.com)
+[https://whalephantseed.com](#whalephantseed.com)
 
 ### Workflow example
 

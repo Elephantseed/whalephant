@@ -1,3 +1,1 @@
-#main css
-cd app &&\
-./node_modules/.bin/node-sass --include-path scss stylesheets/main.scss stylesheets/main.css
+app/node_modules/.bin/node-sass --include-path scss stylesheets/main.scss stylesheets/main.css

@@ -66,6 +66,15 @@ $ slush jspm-react-seed
 $ npm run init
 ```
 
+### Application Home page
+
+This only works in local assuming you added this entry to your hosts file:
+
+```
+127.0.0.1 whalephantseed.com
+```
+[https://whalephantseed.com](#whalephantseed.com)
+
 #### Node Commands
 
 Dockerless NodeJS Server with unbundled dependencies 
@@ -95,7 +104,6 @@ but you will have to manually refresh the website)
 
 ```bash
 $ npm run start:docker
-$ open https://docker.nginx.node.com
 ```
 
 Run arbitrary command inside the container

@@ -1,6 +1,6 @@
 {
-  "name": "docker-nginx-node",
-  "version": "2.1.2",
+  "name": "whalephant",
+  "version": "1.0.0",
   "description": "Docker Nginx Node",
   "main": "server.js",
   "scripts": {
@@ -35,7 +35,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sloppylopez/elephantseed.git"
+    "url": "git://github.com/Elephantseed/whalephant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Elephantseed/whalephant/issues"
   },
   "keywords": [
     "docker",

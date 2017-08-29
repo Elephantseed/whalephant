@@ -8,7 +8,7 @@ services:
       - 443:443
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./server/nginx/certs:/etc/nginx/certs
+      - server/nginx/certs:/etc/nginx/certs
     links:
       - node-server:node-server
 

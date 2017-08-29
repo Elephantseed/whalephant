@@ -1,6 +1,6 @@
 /*
- * slush-jspm-react-seed
- * https://github.com/sloppylopez/slush-jspm-react-seed
+ * whalephant
+ * https://github.com/elephantseed/whalephant
  *
  * Copyright (c) 2017, Sergio Lopez
  * Licensed under the MIT license.
