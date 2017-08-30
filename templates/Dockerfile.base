@@ -1,13 +1,9 @@
-FROM node:6.11.2-alpine
+USER rootFROM node:6.11.2-alpine
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
 ENV USER="<%= userName %>"
-ENV HOME=/home/$USER
-ENV LOOK_UP_TIME=480
-ENV NODE_MODULES=/usr/local/lib/node_modules
-ENV BIN=/usr/local/bin/
-ENV JSPM=node_modules/.bin/jspm
+ENV HOME=/home/$USER/
 
 LABEL vendor=<%= userName %>\
       com.<%= appName %>-base.version=<%= appVersion %> \
@@ -15,11 +11,10 @@ LABEL vendor=<%= userName %>\
 
 RUN apk add --no-cache make gcc g++ python git
 
-#Add user and group
 RUN addgroup -S $USER &&\
     adduser -S -g $USER $USER
 
-COPY package.json yarn.lock $HOME/
+COPY package.json yarn.lock $HOME
 ADD bin/ $HOME/bin
 ADD server/ $HOME/server
 RUN chown -R $USER:$USER $HOME

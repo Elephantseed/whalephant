@@ -36,7 +36,7 @@
     "prod:docker": "bin/docker/prod",
     "start:docker": "bin/docker/start",
     "stop:docker": "bin/docker/stop",
-    "build:docker": "bin/docker/build",
+    "build:docker": "bin/docker/build --",
     "clean:docker": "bin/docker/clean",
     "exec:docker": "bin/docker/exec",
     "enter:docker": "bin/docker/enter",

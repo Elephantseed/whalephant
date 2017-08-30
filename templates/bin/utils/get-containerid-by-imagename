@@ -1,1 +1,1 @@
-docker ps -aqf "name=node-container"
+docker ps -aqf $@

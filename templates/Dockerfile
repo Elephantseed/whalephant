@@ -1,21 +1,25 @@
-FROM elephant:whalephant-seed-base
+FROM elephantseed/whalephant-seed-base:latest
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
 ENV USER="<%= userName %>"
 ENV HOME=/home/$USER
 ENV LOOK_UP_TIME=480
-ENV NODE_MODULES=/usr/local/lib/node_modules
-ENV BIN=/usr/local/bin/
+ENV NODE_MODULES=/usr/local/lib/node_modules/
+ENV BIN=/usr/local/bin
 ENV JSPM=node_modules/.bin/jspm
+ENV APP=$HOME/app/
 
 LABEL vendor=<%= userName %>\
       com.<%= appName %>-base.version=<%= appVersion %> \
       com.<%= appName %>-base.release-date="2017-03-25"
 
-WORKDIR $HOME
+USER root
+COPY app/package.json app/yarn.lock app/config.js $APP
+RUN chown -R $USER:$USER app/ bin/ server/
+
 USER $USER
-COPY app/package.json app/yarn.lock app/config.js $HOME/app/
+WORKDIR $HOME
 
 RUN cd app &&\
     yarn &&\
