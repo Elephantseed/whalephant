@@ -44,7 +44,7 @@ const defaults = (function () {
 
   return {
     appName: workingDirName,
-    userName: 'elephantseed' || osUserName || format(user.name || ''),
+    userName: osUserName || format(user.name || ''),
     authorName: user.name || '',
     authorEmail: user.email || ''
   };

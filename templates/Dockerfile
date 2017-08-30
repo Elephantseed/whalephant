@@ -3,20 +3,26 @@ FROM elephantseed/whalephant-seed-base:latest
 ARG JSPM_GITHUB_AUTH_TOKEN
 
 ENV USER="<%= userName %>"
+ENV ELEPHANT_SEED_USER="elephantseed"
 ENV HOME=/home/$USER
+ENV ELEPHANT_SEED_HOME=/home/$ELEPHANT_SEED_USER
+ENV APP_NAME=<%= appName %>
+ENV APP_VERSION=<%= appVersion %>
 ENV LOOK_UP_TIME=480
 ENV NODE_MODULES=/usr/local/lib/node_modules/
-ENV BIN=/usr/local/bin
 ENV JSPM=node_modules/.bin/jspm
-ENV APP=$HOME/app/
+ENV APP=$HOME/app
+ENV BIN=$ELEPHANT_SEED_HOME/bin
+ENV SERVER=$ELEPHANT_SEED_HOME/server
 
-LABEL vendor=<%= userName %>\
-      com.<%= appName %>-base.version=<%= appVersion %> \
-      com.<%= appName %>-base.release-date="2017-03-25"
+LABEL vendor=$USER\
+      com.$APP_NAME-base.version=$APP_VERSION \
+      com.$APP_NAME-base.release-date="2017-03-25"
 
 USER root
-COPY app/package.json app/yarn.lock app/config.js $APP
-RUN chown -R $USER:$USER app/ bin/ server/
+RUN addgroup -S $USER && adduser -S -g $USER $USER
+ADD app/ $APP
+RUN chown -R $USER:$USER $APP $BIN $SERVER
 
 USER $USER
 WORKDIR $HOME
