@@ -1,4 +1,4 @@
 npm run stop:docker
-docker rmi $(docker images --filter=reference='sloppylopez/whalephant-seed:latest' --format "{{.ID}}") --force
-npm run clean-volume:docker &>/dev/null || echo "No volumes to remove"
+docker rmi $(docker images --filter=reference='<%= userName %>/<%= appName %>-base:latest' --format "{{.ID}}") --force
+npm run clean-volume:docker > /dev/null 2>&1 || echo "No volumes to remove"
 docker system prune -f
