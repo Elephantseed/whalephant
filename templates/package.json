@@ -1,8 +1,19 @@
 {
-  "name": "whalephant",
-  "version": "1.0.0",
-  "description": "Docker Nginx Node",
-  "main": "server.js",
+  "name": "<%= appName %>",
+  "description": "<%= appDescription %>",
+  "version": "<%= appVersion %>",
+  "homepage": "https://github.com/<%= userName %>/<%= appName %>",
+  "author": {
+    "name": "<%= authorName %>",
+    "email": "<%= authorEmail %>"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/<%= userName %>/<%= appNameSlug %>"
+  },
+  "bugs": {
+    "url": "https://github.com/<%= userName %>/<%= appNameSlug %>/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "start": "npm run start:node",
@@ -32,13 +43,6 @@
     "clean-volume:docker": "bin/docker/clean-volume",
     "standalone-node:docker": "bin/docker/standalone-node",
     "check:eslint": "bin/eslint/check"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Elephantseed/whalephant.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Elephantseed/whalephant/issues"
   },
   "keywords": [
     "docker",

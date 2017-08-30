@@ -1,238 +1,50 @@
-# Whalephant Seed 
+# Slush Whalephant [![Build Status](https://secure.travis-ci.org/sloppylopez/slush-whalephant.png?branch=master)](https://travis-ci.org/sloppylopez/slush-whalephant) [![NPM version](https://badge-me.herokuapp.com/api/npm/slush-whalephant.png)](http://badges.enytc.com/for/npm/slush-whalephant)
 
-[![oficial site](https://img.shields.io/badge/sloppy-lopez-pink.svg)](http://sloppylopez.com)
-[![built without gulp](https://img.shields.io/badge/build%20without-gulp-brightgreen.svg)](http://jspm.com)
-![Dependencies](https://david-dm.org/sloppylopez/elephantseed.svg)
-[![CircleCI](https://circleci.com/gh/Elephantseed/whalephant.svg?style=svg)](https://circleci.com/gh/Elephantseed/whalephant)
+> Docker Nginx Node Website Scaffolding
 
-[![Elephant Seed](https://github.com/Elephantseed/whalephant/blob/master/templates/assets/images/ElephantSeed.png?raw=true)](https://elephantseed.firebaseapp.com)
- 
-#### Features out-of-the-box
 
-        NEW! Added Docker support
-        
-        NEW! Added live reload with Browser-Sync
-        
-        Improved loading times in production bundle
+## Getting Started
 
-        Added working ESlint out-of-the-box
-
-        Codeclimate ready
-        
-        Added floating notifications using toastr
-        
-        Firebase 3.0 friendly, just login with your account and deploy
-        
-        Minimum possible configuration, maximum features,
-        judge by yourself
-        
-        Use NodeJS packages (>= 300000 available)
-        
-        JSPM for universal Javascript package managing
-
-        ES6 & ES7 Syntactic Sugar ready out-of-the-box
-
-        Bundling & Minifying (JSPM native)
-        
-        NodeSASS for scss2css 
-        
-        Added 7 to 1 for managing styles 
-        https://github.com/HugoGiraudel/sass-boilerplate
-
-        No Grunt/Gulp/Broccoli/Cake/Whatever... needed at the time of writing, 
-        let's see if we can build the whole seed without them.
-        
-
-#### Getting Started
-Install `slush-jspm-react-seed` globally:
+Install `slush-whalephant` globally:
 
 ```bash
-$ npm install -g slush-jspm-react-seed
+$ npm install -g slush-whalephant
 ```
 
-#### Usage
+### Usage
 
-* Create a new folder for your project:
+Create a new folder for your project:
 
 ```bash
-$ mkdir my-whalephant-seed
+$ mkdir my-slush-whalephant
 ```
 
-* Run the generator from within the new folder and download deps after:
+Run the generator from within the new folder:
 
 ```bash
-$ cd my-whalephant-seed
-$ slush jspm-react-seed
-$ npm run init
+$ cd my-slush-whalephant && slush whalephant
 ```
 
-### Application Home page
+## Getting To Know Slush
 
-This only works in local assuming you added this entry to your hosts file:
+Slush is a tool that uses Gulp for project scaffolding.
 
-```
-127.0.0.1 whalephantseed.com
-```
-[https://whalephantseed.com](#whalephantseed.com)
+Slush does not contain anything "out of the box", except the ability to locate installed slush generators and to run them with liftoff.
 
-#### Node Commands
+To find out more about Slush, check out the [documentation](https://github.com/slushjs/slush).
 
-Dockerless NodeJS Server with unbundled dependencies 
-using https via Browser-Sync 
+## Contributing
 
-(includes live reload, Browser-Sync will open the website for you)
+See the [CONTRIBUTING Guidelines](https://github.com/sloppylopez/slush-whalephant/blob/master/CONTRIBUTING.md)
 
-```bash
-$ npm run dev:node
-```
+## Support
+If you have any problem or suggestion please open an issue [here](https://github.com/sloppylopez/slush-whalephant/issues).
 
-Dockerless NodeJS Server with bundled dependencies using https via Browser-Sync 
-
-(includes live reload and source maps)
-
-```bash
-$ npm run prod:node
-```
-
-#### Docker Commands
-
-Docker Nginx + Docker NodeJS Server with HTTPS and custom domain
-
-(Observe that is not possible to reload and focus the browser from 
-inside a container, every change you made will be reflected 
-but you will have to manually refresh the website)
-
-```bash
-$ npm run start:docker
-```
-
-Run arbitrary command inside the container
-
-```bash
-$ npm run exec:docker -- echo 'I am inside the container'
-```
-
-Run arbitrary command inside the container (docker natively)
-
-```bash
-$ docker-compose run --rm node-server /bin/bash -c 'echo "I am inside the container"'
-```
-
-Enter running Docker Node container
-
-```bash
-$ npm run enter:docker
-```
-
-Docker-compose build
-
-```bash
-$ npm run build:docker
-```
-
-Stop and clean all instances, images, containers and volumes of this application
-
-```bash
-$ npm run clean:docker
-```
-
-#### JSPM Commands
-
-Bundle application dependencies
-
-```bash
-$ npm run bundle:jspm
-```
-
-Unbundle application dependencies
-
-```bash
-$ npm run unbundle:jspm
-```
-
-#### ESlint Commands
-
-```bash
-$ npm run check:eslint
-```
-
-#### NodeSass Commands
-
-```bash
-$ npm run buildcss:nodesass
-```
-
-#### Deploy in Firebase 
-
-You have to login via command line in your OWN account):
-
-```bash
-$ firebase deploy
-```
-
-#### Common Pitfalls
-
-* If your connection is slow then sometimes `jspm i` may have hiccups while 
-doing look ups trying to download dependencies, just wait for it to finish and repeat `jspm i` 
-few times until it manages to download all dependencies,
-eventually you may try to `slush jspm-react-seed` again in a clean folder if the installer gets stuck.
-You may see messages like this is that situation
-```
-     warn It's taking a long time to process the dependencies of npm:core-util-is@1.0.2.
-          This package may need an ignore property to indicate test or example folders for jspm to skip.
-```
-* While using the seed with you preferred CI you may see this error:
-```
-     Updating registry cache...
-     Looking up github:twbs/bootstrap
-     Downloading github:twbs/bootstrap@3.3.1
-
-err  Error downloading github:twbs/bootstrap
-
-     GitHub rate limit reached. To increase the limit use GitHub authentication.
-     Run jspm endpoint config github to set this up.
-
-warn Installation changes not saved.
-``` 
-Fear not, here you can see how to overcome the problem, unfortunately the seed can't do that for you:
-https://github.com/jspm/jspm-cli/blob/master/docs/registries.md
-
-* When eslint finds an error you may see an error message coming from npm, this is normal, just fix the linting
-   error and you won't see it anymore
-   
-* No space left on device!, you can solve it deleting this file
-
-```bash
-$ ls -lah ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.qcow2
-``` 
-
-* Not connecting to the Docker container:
-
-```
-ERROR: dial unix /Users/sloppylopez/Library/Containers/com.docker.docker/Data/00000003.00000948: connect: connection refused
-
-npm ERR! Darwin 16.7.0
-npm ERR! argv "/usr/local/bin/node" "/usr/local/bin/npm" "run" "start:docker"
-```
-
-Solve it using :
-
-```bash
-$ npm run clean:docker
-``` 
-
-#### Contributing
-
-See the [CONTRIBUTING Guidelines](https://github.com/sloppylopez/slush-jspm-react-seed/blob/master/CONTRIBUTING.md)
-
-#### Support
-If you have any problem or suggestion please open an issue [here](https://github.com/sloppylopez/slush-jspm-react-seed/issues).
-
-#### License 
+## License 
 
 The MIT License
 
-Copyright (c) 2017, Sergio Lopez
+Copyright (c) 2017, Sloppy Lopez <Elephant Seed>
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -254,3 +66,4 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
+

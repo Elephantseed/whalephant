@@ -1,4 +1,4 @@
-v1.0.0
-  date: 2017-09-29
+v0.1.0:
+  date: 2017-8-30
   changes:
-    - Initital release
+    - Initial release.

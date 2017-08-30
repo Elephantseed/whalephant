@@ -5,7 +5,7 @@ set -e
 if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]
 then
    echo "usage: sh init.sh <GIT_USER> <GIT_PROJECT_NAME> <DOCKER_CONTAINER_BASE_IMAGE> <TIMEOUT_FOR_BUILD>"
-   echo "example: sh init.sh elephantseed whalephant node-server 30m"
+   echo "example: sh init.sh elephantseed <%= appName %> node-server 30m"
    exit
 fi
 

@@ -1,1 +1,2 @@
-node_modules/.bin/eslint --fix ./app ./server/node
+cd app &&\
+node_modules/.bin/eslint --fix app server/node

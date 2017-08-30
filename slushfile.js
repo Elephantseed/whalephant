@@ -1,8 +1,8 @@
 /*
  * whalephant
- * https://github.com/elephantseed/whalephant
+ * https://github.com/elephantseed/slush-whalephant
  *
- * Copyright (c) 2017, Sergio Lopez
+ * Copyright (c) 2017, Sloppy Lopez <Elephant Seed>
  * Licensed under the MIT license.
  */
 
@@ -89,7 +89,10 @@ gulp.task('default', function (done) {
     answers.appNameSlug = _.slugify(answers.appName);
 
     gulp.src([
-      __dirname + '/templates/**', '!' + __dirname + '/templates/assets/', '!' + __dirname + '/templates/server/**'])
+      path.join(__dirname, '/templates/**'),
+      path.join('!' + __dirname, '/templates/assets/**'),
+      path.join('!' + __dirname, '/templates/server/**'),
+      path.join('!' + __dirname, '/templates/bin/ephimerald-ci/**')])
       .pipe(template(answers))
       .pipe(rename(function (file) {
         if (file.basename[0] === '_' && file.extname !== '.scss') {
@@ -100,7 +103,11 @@ gulp.task('default', function (done) {
       .pipe(gulp.dest('./'))
       .pipe(install());
 
-    gulp.src([__dirname + '/templates/server/**'])
+    gulp.src([path.join(__dirname, '/templates/bin/ephimerald-ci/**')])
+      .pipe(conflict('./'))
+      .pipe(gulp.dest('./bin'));
+
+    gulp.src([path.join(__dirname, '/templates/server/**')])
       .pipe(conflict('./'))
       .pipe(gulp.dest('./server'))
       .on('end', function () {

@@ -3,7 +3,7 @@ import React, {Component} from "react";
 // eslint-disable-next-line no-unused-vars
 import {render} from "react-dom";
 // eslint-disable-next-line no-unused-vars
-import AcmeListGroup from "./list_group/list-group";
+import AcmeListGroup from "./list-group/list-group";
 
 export default
 class AcmeBody extends Component {

@@ -1,4 +1,4 @@
-FROM node:6.10.1
+FROM node:alpine
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
@@ -8,22 +8,24 @@ ENV HOME=/home/$USER
 ENV LOOK_UP_TIME=480
 
 LABEL vendor=SloppyLopez\
-      com.whalephant-seed.version="1.0.0" \
-      com.whalephant-seed.release-date="2017-03-25"
+      com.<%= appName %>.version="<%= appVersion %>" \
+      com.<%= appName %>.release-date="2017-03-25"
 
-RUN useradd -ms /bin/bash $USER
+#Add user and group
+RUN addgroup -S $USER &&\
+    adduser -S -g $USER $USER
 
 #Copy files to container
 COPY package.json yarn.lock $HOME/
 ADD server/ $HOME/server
 COPY app/package.json app/yarn.lock app/config.js $HOME/app/
-RUN chown -R $USER:$USER $HOME/*
+RUN chown -R $USER:$USER $HOME/* /usr/lib/node_modules /usr/bin
 
 WORKDIR $HOME
 USER $USER
 
 #Install Server dependencies
-RUN npm i yarn@$YARN_VERSION &&\
+RUN npm i -g yarn@$YARN_VERSION &&\
     yarn
 
 #Install App dependencies

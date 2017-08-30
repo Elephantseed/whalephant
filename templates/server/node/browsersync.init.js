@@ -4,7 +4,7 @@ const BS_PORT = 7000,
     reload = require("./reload");
 
 bs.init(null, {
-    "proxy": `http://docker.nginx.node.com:${PORT}`,
+    "proxy": `http://whalephant.com:${PORT}`,
     "browser": "google chrome",
     "open": "local",
     "port": BS_PORT,
