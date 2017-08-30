@@ -1,26 +1,34 @@
 version: '3'
 services:
-#  nginx-proxy:
-#    image: jwilder/nginx-proxy
-#    container_name: nginx-container
-#    ports:
-#      - 80:80
-#      - 443:443
-#    volumes:
-#      - /var/run/docker.sock:/tmp/docker.sock:ro
-#      - ./server/nginx/certs:/etc/nginx/certs
-#    links:
-#      - node-server:node-server
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-container
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./server/nginx/certs:/etc/nginx/certs
+    links:
+      - node-server:node-server
 
   node-server-base:
     build:
       context: .
       dockerfile: Dockerfile.base
-      args:
-        - JSPM_GITHUB_AUTH_TOKEN=$JSPM_GITHUB_AUTH_TOKEN
     image: <%= userName %>/<%= appName %>-base:latest
     command: npm start
-    container_name: node-container
+    container_name: node-server-base-container
+
+  node-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - JSPM_GITHUB_AUTH_TOKEN=$JSPM_GITHUB_AUTH_TOKEN
+    image: <%= userName %>/<%= appName %>:latest
+    command: npm start
+    container_name: node-server-container
     ports:
       - 8080:8080
       - 5858:5858

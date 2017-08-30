@@ -1,4 +1,4 @@
-FROM node:6.11.2-alpine
+FROM elephant:whalephant-seed-base
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
@@ -13,29 +13,14 @@ LABEL vendor=<%= userName %>\
       com.<%= appName %>-base.version=<%= appVersion %> \
       com.<%= appName %>-base.release-date="2017-03-25"
 
-RUN apk add --no-cache make gcc g++ python git
-
-#Add user and group
-RUN addgroup -S $USER &&\
-    adduser -S -g $USER $USER
-
-#This 2 lines is the end of the base container
-COPY package.json yarn.lock $HOME/
-ADD server/ $HOME/server
-COPY app/package.json app/yarn.lock app/config.js $HOME/app/
-RUN chown -R $USER:$USER $HOME $BIN $NODE_MODULES
-
 WORKDIR $HOME
 USER $USER
+COPY app/package.json app/yarn.lock app/config.js $HOME/app/
 
-#Install Server dependencies
-RUN yarn
-
-#Install App dependencies
 RUN cd app &&\
     yarn &&\
     $JSPM config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
     $JSPM config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
     $JSPM i --lock
 
-CMD ["node", "./server/node/server"]
+CMD ["npm", "start"]
