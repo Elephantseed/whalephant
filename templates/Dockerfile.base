@@ -19,11 +19,10 @@ RUN apk add --no-cache make gcc g++ python git
 RUN addgroup -S $USER &&\
     adduser -S -g $USER $USER
 
-#This 2 lines is the end of the base container
 COPY package.json yarn.lock $HOME/
+ADD bin/ $HOME/bin
 ADD server/ $HOME/server
-COPY app/package.json app/yarn.lock app/config.js $HOME/app/
-RUN chown -R $USER:$USER $HOME $BIN $NODE_MODULES
+RUN chown -R $USER:$USER $HOME
 
 WORKDIR $HOME
 USER $USER
@@ -31,11 +30,4 @@ USER $USER
 #Install Server dependencies
 RUN yarn
 
-#Install App dependencies
-RUN cd app &&\
-    yarn &&\
-    $JSPM config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
-    $JSPM config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
-    $JSPM i --lock
-
-CMD ["node", "./server/node/server"]
+CMD ["node", "--version"]

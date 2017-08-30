@@ -4,22 +4,22 @@ const BS_PORT = 7000,
     reload = require("./reload");
 
 bs.init(null, {
-    "proxy": `http://whalephant.com:${PORT}`,
+    "proxy": `http://docker.nginx.node.com:${PORT}`,
     "browser": "google chrome",
     "open": "local",
     "port": BS_PORT,
     "https": {
-        "key": "server/nginx/certs/whalephant.key",
-        "cert": "server/nginx/certs/whalephant.crt"
+        "key": "server/nginx/certs/docker.nginx.node.com.key",
+        "cert": "server/nginx/certs/docker.nginx.node.com.crt"
     },
     "watchOptions": {
         "ignoreInitial": true
     },
     "files": [
-        "app/index.html",
-        "app/stylesheets/*.css",
+        "./app/index.html",
+        "./app/stylesheets/*.css",
         {
-            "match": ["app/components"],
+            "match": ["./app/components"],
             "fn": (event, file) => {
                 // TODO improve the number of files reloaded
                 // making it smarter and using aritmetic jspm
@@ -27,7 +27,7 @@ bs.init(null, {
             }
         },
         {
-            "match": ["app/stylesheets/**/*.scss"],
+            "match": ["./app/stylesheets/**/*.scss"],
             "fn": (event, file) => {
                 reload.css(event, file);
             }

@@ -1,4 +1,4 @@
 npm run stop:docker
+docker rmi $(docker images --filter=reference='sloppylopez/whalephant-seed:latest' --format "{{.ID}}") --force
 npm run clean-volume:docker &>/dev/null || echo "No volumes to remove"
-docker rmi dockernginxnode_node-server
 docker system prune -f
