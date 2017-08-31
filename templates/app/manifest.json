@@ -1,0 +1,19 @@
+{
+  "short_name": "ElephantSeed",
+  "name": "Elephant Seed Web Application",
+  "icons": [
+    {
+      "src": "100_google_best_practices.png",
+      "type": "image/png",
+      "sizes": "212x228"
+    },
+    {
+      "src": "ElephantSeed.png",
+      "type": "image/png",
+      "sizes": "170x170"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "landscape"
+}
