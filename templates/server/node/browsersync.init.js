@@ -5,14 +5,11 @@ const BS_PORT = 7000,
     cache = require("./cache");
 
 bs.init(null, {
-    "proxy": `http://docker.nginx.node.com:${PORT}`,
+    "proxy": `https://docker.nginx.node.com:${PORT}`,
     "browser": "google chrome",
     "open": "local",
     "port": BS_PORT,
-    "https": {
-        "key": "./server/nginx/certs/docker.nginx.node.com.key",
-        "cert": "./server/nginx/certs/docker.nginx.node.com.crt"
-    },
+    "http": true,
     "watchOptions": {
         "ignoreInitial": true
     },
