@@ -53,9 +53,8 @@
     "slushgenerator",
     "slush"
   ],
-  "author": "Sloppy Lopez",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "babel-eslint": "^7.2.3",
     "browser-sync": "^2.18.13",
     "chalk": "^2.1.0",
@@ -64,6 +63,7 @@
     "express": "^4.15.2",
     "jspm": "^0.16.53",
     "rimraf": "^2.6.1",
-    "shelljs": "^0.7.8"
+    "shelljs": "^0.7.8",
+    "morgan": "^1.8.2"
   }
 }

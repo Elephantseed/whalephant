@@ -1,7 +1,8 @@
 const BS_PORT = 7000,
     PORT = 8080,
     bs = require("browser-sync").create(),
-    reload = require("./reload");
+    reload = require("./reload"),
+    cache = require("./cache");
 
 bs.init(null, {
     "proxy": `http://docker.nginx.node.com:${PORT}`,
@@ -9,8 +10,8 @@ bs.init(null, {
     "open": "local",
     "port": BS_PORT,
     "https": {
-        "key": "server/nginx/certs/docker.nginx.node.com.key",
-        "cert": "server/nginx/certs/docker.nginx.node.com.crt"
+        "key": "./server/nginx/certs/docker.nginx.node.com.key",
+        "cert": "./server/nginx/certs/docker.nginx.node.com.crt"
     },
     "watchOptions": {
         "ignoreInitial": true
@@ -21,9 +22,9 @@ bs.init(null, {
         {
             "match": ["./app/components"],
             "fn": (event, file) => {
-                // TODO improve the number of files reloaded
-                // making it smarter and using aritmetic jspm
+              if (event === "change") {
                 reload.app(event, file).then(() => bs.reload());
+              }
             }
         },
         {
