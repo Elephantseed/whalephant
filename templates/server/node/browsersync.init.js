@@ -6,10 +6,11 @@ const BS_PORT = 7000,
 
 bs.init(null, {
     "proxy": `https://docker.nginx.node.com:${PORT}`,
+    "host": "docker.nginx.node.com",
     "browser": "google chrome",
-    "open": "local",
+    "open": "external",
     "port": BS_PORT,
-    "http": true,
+    "https": true,
     "watchOptions": {
         "ignoreInitial": true
     },
@@ -19,9 +20,9 @@ bs.init(null, {
         {
             "match": ["./app/components"],
             "fn": (event, file) => {
-              if (event === "change") {
-                reload.app(event, file).then(() => bs.reload());
-              }
+                if (event === "change") {
+                    reload.app(event, file).then(() => bs.reload());
+                }
             }
         },
         {

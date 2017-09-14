@@ -9,7 +9,7 @@ const BUILDCSS = "npm run buildcss:nodesass",
 const app = function app (event, file) {
         return new Promise((resolve) => {
             if (event === "change") {
-                logger.info(` File event [${event}]`, file);
+                logger.info(`File event [${event}]`, file);
                 getDistFiles()
                     .then((files) =>
                       exec(getBundleCommand(files.length), options))
