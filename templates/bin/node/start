@@ -1,1 +1,2 @@
+npm run stop:compose
 node server/node/server

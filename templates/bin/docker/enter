@@ -1,1 +1,5 @@
-docker exec -it `bin/utils/get-containerid-by-imagename` sh
+if [[ -z "$@" ]]; then
+    docker exec -it `docker ps -aqf name=node-container` sh
+else
+    docker exec -it `docker ps -aqf name=$@` sh
+fi

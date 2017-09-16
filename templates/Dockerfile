@@ -20,7 +20,7 @@ LABEL vendor=$USER\
       com.$APP_NAME-base.release-date="2017-03-25"
 
 USER root
-RUN addgroup -S $USER && adduser -S -g $USER $USER
+#RUN sh /bin/docker/create-group $USER
 ADD app/ $APP
 RUN chown -R $USER:$USER $APP $BIN $SERVER
 

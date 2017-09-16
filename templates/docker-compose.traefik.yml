@@ -1,0 +1,18 @@
+version: '3.2'
+services:
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+
+  machine:
+    image: elephantseed/whalephant-seed-base
+    labels:
+      - "traefik.backend=machine-echo"
+      - "traefik.frontend.rule=Host:docker.nginx.node.com"

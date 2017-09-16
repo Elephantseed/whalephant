@@ -1,2 +1,17 @@
-npm run stop:node
-docker-compose up
+#Remember to template this file before pushing 'sloppylopez'  => <USERNAME>
+BASEDIR=`echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")`
+WORKDIR=/home/<%= userName %>
+
+npm run remove-containers:compose
+
+docker run -d \
+           -it \
+           --rm \
+           --name node-container \
+           -p 8000:8000 \
+           -p 80:80 \
+           -p 5858:5858 \
+           -v $BASEDIR/app:$WORKDIR/app \
+           -v $BASEDIR/app/node_modules:$WORKDIR/app/node_modules \
+           -v $BASEDIR/app/jspm_packages:$WORKDIR/app/jspm_packages \
+           elephantseed/whalephant-seed-base npm start

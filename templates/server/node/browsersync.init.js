@@ -1,11 +1,10 @@
 const BS_PORT = 7000,
-    PORT = 8080,
     bs = require("browser-sync").create(),
     reload = require("./reload"),
-    cache = require("./cache");
+    cache = require("./cache");//TODO cache for jspm dependencies
 
 bs.init(null, {
-    "proxy": `https://docker.nginx.node.com:${PORT}`,
+    "proxy": "https://docker.nginx.node.com",
     "host": "docker.nginx.node.com",
     "browser": "google chrome",
     "open": "external",

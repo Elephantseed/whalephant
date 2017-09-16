@@ -3,4 +3,4 @@ temp
 *.log
 .idea
 jspm_packages
-whalephant-seed
+whalephant-seed*

@@ -1,4 +1,6 @@
-USER rootFROM node:6.11.2-alpine
+FROM node:8.5.0-alpine
+
+USER root
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
@@ -27,4 +29,4 @@ USER $USER
 #Install Server dependencies
 RUN yarn
 
-CMD ["node", "--version"]
+CMD ["npm", "start"]

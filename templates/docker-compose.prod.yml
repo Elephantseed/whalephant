@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile.base
       args:
         - JSPM_GITHUB_AUTH_TOKEN=$JSPM_GITHUB_AUTH_TOKEN
-    image: <%= userName %>/<%= appName %>-base:latest
+    image: sloppylopez/whalephant-seed-base:latest
     container_name: node-container
     ports:
       - 8080:8080

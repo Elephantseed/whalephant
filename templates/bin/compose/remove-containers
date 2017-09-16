@@ -1,0 +1,2 @@
+npm run stop:compose
+docker rm $(docker ps -aq) || echo "No containers to remove"

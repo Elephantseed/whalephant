@@ -1,4 +1,4 @@
-const PORT = 8080,
+const PORT = 8000,
     express = require("express"),
     logger = require("./logger"),
     morgan = require("morgan"),
@@ -7,7 +7,7 @@ const PORT = 8080,
     spdyFactory = require("./spdyFactory");
 
 
-require("./browsersync.init");
+// require("./browsersync.init");
 
 // setup the logger
 server.use(morgan("combined"));
@@ -16,10 +16,7 @@ server.use(express.static(
   path.join(__dirname, "../../app"))
 );
 server.use(express.static(
-  path.join(__dirname, "../../app/jspm_packages/github"))
-);
-server.use(express.static(
-  path.join(__dirname, "../../app/jspm_packages/npm"))
+  path.join(__dirname, "../../app/jspm_packages"))
 );
 
 server.get("/", (req, res) => {
@@ -28,13 +25,15 @@ server.get("/", (req, res) => {
 
 const expressSPDY = spdyFactory.get(server);
 
-// server.listen(PORT);
+server.listen(PORT);
 
-expressSPDY.listen(PORT, (error) => {
-    if (error) {
-        logger.error(error);
-        return process.exit(1);
-    } else {
-        logger.info(`Node server listening to port ${PORT}`);
-    }
-});
+logger.info(`Node server listening to port ${PORT}`);
+
+// expressSPDY.listen(PORT, (error) => {
+//     if (error) {
+//         logger.error(error);
+//         return process.exit(1);
+//     } else {
+//         logger.info(`Node server listening to port ${PORT}`);
+//     }
+// });
