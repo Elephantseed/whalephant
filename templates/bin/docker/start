@@ -1,2 +1,26 @@
-npm run stop:node
-docker-compose up
+BASEDIR=`echo $(cd $(dirname "$1") && pwd -P)/$(basename "$1")`
+USERNAME=<%= userName %>
+APPNAME=<%= appName %>
+WORKDIR=/home/<%= userName %>
+
+#Refactor this
+if [[ -z "$@" ]]; then
+    BASE_IMAGE=$USERNAME/$APPNAME-base
+else
+    BASE_IMAGE=$@
+fi
+
+echo 'building for using' $BASE_IMAGE
+
+npm run remove-containers:compose
+
+docker run -d \
+           -it \
+           --rm \
+           --name node-container \
+           -p 8000:8000 \
+           -p 5858:5858 \
+           -v $BASEDIR/app:$WORKDIR/app \
+           -v $BASEDIR/app/node_modules:$WORKDIR/app/node_modules \
+           -v $BASEDIR/app/jspm_packages:$WORKDIR/app/jspm_packages \
+           $BASE_IMAGE npm start

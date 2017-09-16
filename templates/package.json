@@ -17,8 +17,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "start": "npm run start:node",
-    "init": "bin/utils/init",
-    "build:jspm": "bin/jspm/build",
+    "init": "bin/app/init",
     "bundle:jspm": "bin/jspm/bundle",
     "unbundle:jspm": "bin/jspm/unbundle",
     "minify:jspm": "bin/jspm/minify",
@@ -32,17 +31,20 @@
     "start:node": "bin/node/start",
     "stop:node": "bin/node/stop",
     "buildcss:nodesass": "bin/nodesass/buildcss",
+    "start:compose": "bin/compose/start",
+    "stop:compose": "bin/compose/stop",
+    "build:compose": "bin/compose/build",
+    "clean:compose": "bin/compose/clean",
+    "clean-volumes:compose": "bin/compose/clean-volumes",
+    "remove-containers:compose": "bin/compose/remove-containers",
     "dev:docker": "bin/docker/dev",
     "prod:docker": "bin/docker/prod",
-    "start:docker": "bin/docker/start",
-    "stop:docker": "bin/docker/stop",
-    "build:docker": "bin/docker/build",
-    "clean:docker": "bin/docker/clean",
     "exec:docker": "bin/docker/exec",
     "enter:docker": "bin/docker/enter",
-    "clean-volume:docker": "bin/docker/clean-volume",
-    "standalone-node:docker": "bin/docker/standalone-node",
-    "check:eslint": "bin/eslint/check"
+    "standalone:docker": "bin/docker/standalone",
+    "check:eslint": "bin/eslint/check",
+    "start:traefik": "bin/traefik/start",
+    "start:docker": "bin/docker/start"
   },
   "keywords": [
     "docker",
@@ -53,17 +55,21 @@
     "slushgenerator",
     "slush"
   ],
-  "author": "Sloppy Lopez",
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "browser-sync": "^2.18.13",
-    "chalk": "^2.1.0",
     "eslint": "^4.5.0",
     "eslint-plugin-react": "^7.3.0",
     "express": "^4.15.2",
-    "jspm": "^0.16.53",
     "rimraf": "^2.6.1",
+    "chalk": "^2.1.0",
     "shelljs": "^0.7.8"
+  },
+  "dependencies": {
+    "jspm": "^0.16.53",
+    "http2": "^3.3.6",
+    "morgan": "^1.8.2",
+    "spdy": "^3.4.7"
   }
 }

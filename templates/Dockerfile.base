@@ -1,0 +1,32 @@
+FROM node:8.5.0-alpine
+
+USER root
+
+ARG JSPM_GITHUB_AUTH_TOKEN
+
+ENV USER="<%= userName %>"
+ENV HOME=/home/$USER/
+ENV APP_NAME=<%= appName %>
+ENV APP_VERSION=<%= appVersion %>
+
+LABEL vendor=$USER\
+      com.$APP_NAME-base.version=$APP_VERSION \
+      com.$APP_NAME-base.release-date="2017-03-25"
+
+RUN apk add --no-cache make gcc g++ python git
+
+RUN addgroup -S $USER &&\
+    adduser -S -g $USER $USER
+
+COPY package.json yarn.lock $HOME
+ADD bin/ $HOME/bin
+ADD server/ $HOME/server
+RUN chown -R $USER:$USER $HOME
+
+WORKDIR $HOME
+USER $USER
+
+#Install Server dependencies
+RUN yarn
+
+CMD ["npm", "start"]

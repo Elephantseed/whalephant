@@ -1,0 +1,4 @@
+npm run stop:compose
+docker rm $(docker ps -aqf name=node_container)
+docker rmi $(docker images --filter=reference='<%= userName %>/<%= appName %>-base:latest' --format "{{.ID}}") --force || echo "No image to remove "
+npm run clean-volumes:compose || echo "No volumes to remove"

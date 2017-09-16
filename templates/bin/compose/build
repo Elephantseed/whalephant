@@ -1,0 +1,5 @@
+if [[ -z "$@" ]]; then
+    docker-compose build
+else
+    docker-compose build $@
+fi

@@ -1,27 +1,39 @@
-const PORT = 8080,
-    chalk = require("chalk"),
+const PORT = 8000,
     express = require("express"),
-    log = console.log,
+    logger = require("./logger"),
+    morgan = require("morgan"),
     path = require("path"),
-    server = express();
+    server = express(),
+    spdyFactory = require("./spdyFactory");
 
-require("./browsersync.init");
+
+// require("./browsersync.init");
+
+// setup the logger
+server.use(morgan("combined"));
 
 server.use(express.static(
-    path.join(__dirname, "../../app"))
+  path.join(__dirname, "../../app"))
 );
 server.use(express.static(
-    path.join(__dirname, "../../app/jspm_packages/github"))
-);
-server.use(express.static(
-    path.join(__dirname, "../../app/jspm_packages/npm"))
+  path.join(__dirname, "../../app/jspm_packages"))
 );
 
 server.get("/", (req, res) => {
-    res.sendFile(path.join(`${__dirname  }../../app/index.html`));
+    res.sendFile(path.join(__dirname, "../../app/index.html"));
 });
+
+const expressSPDY = spdyFactory.get(server);
 
 server.listen(PORT);
 
-log(chalk.magenta("(づ ￣ ³￣)づ ") +
-  chalk.blue(`Node server listening on *:${PORT}`));
+logger.info(`Node server listening to port ${PORT}`);
+
+// expressSPDY.listen(PORT, (error) => {
+//     if (error) {
+//         logger.error(error);
+//         return process.exit(1);
+//     } else {
+//         logger.info(`Node server listening to port ${PORT}`);
+//     }
+// });

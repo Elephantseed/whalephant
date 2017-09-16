@@ -1,33 +1,31 @@
 const BS_PORT = 7000,
-    PORT = 8080,
     bs = require("browser-sync").create(),
-    reload = require("./reload");
+    reload = require("./reload"),
+    cache = require("./cache");//TODO cache for jspm dependencies
 
 bs.init(null, {
-    "proxy": `http://whalephant.com:${PORT}`,
+    "proxy": "https://docker.nginx.node.com",
+    "host": "docker.nginx.node.com",
     "browser": "google chrome",
-    "open": "local",
+    "open": "external",
     "port": BS_PORT,
-    "https": {
-        "key": "server/nginx/certs/whalephant.key",
-        "cert": "server/nginx/certs/whalephant.crt"
-    },
+    "https": true,
     "watchOptions": {
         "ignoreInitial": true
     },
     "files": [
-        "app/index.html",
-        "app/stylesheets/*.css",
+        "./app/index.html",
+        "./app/stylesheets/*.css",
         {
-            "match": ["app/components"],
+            "match": ["./app/components"],
             "fn": (event, file) => {
-                // TODO improve the number of files reloaded
-                // making it smarter and using aritmetic jspm
-                reload.app(event, file).then(() => bs.reload());
+                if (event === "change") {
+                    reload.app(event, file).then(() => bs.reload());
+                }
             }
         },
         {
-            "match": ["app/stylesheets/**/*.scss"],
+            "match": ["./app/stylesheets/**/*.scss"],
             "fn": (event, file) => {
                 reload.css(event, file);
             }

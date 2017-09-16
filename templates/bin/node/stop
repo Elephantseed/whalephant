@@ -1,1 +1,1 @@
-kill -9 $(netstat -vanp tcp | grep 8080 | awk '{print $9}' | uniq) &>/dev/null || kill -9 $(netstat -anp tcp | grep 8080 | awk '{print $9}' | uniq) &>/dev/null || echo "No running Node processes listening on *:8080 found to stop... continuing"
+kill -9 $(netstat -vanp tcp | grep 8080 | awk '{print $9}' | uniq) > /dev/null 2>&1 || kill -9 $(netstat -anp tcp | grep 8080 | awk '{print $9}' | uniq) > /dev/null 2>&1 || echo "No running Node processes listening on *:8080 found to stop... continuing"

@@ -12,24 +12,18 @@ services:
     links:
       - node-server:node-server
 
-  node-server:
+  node-server-base:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.base
       args:
         - JSPM_GITHUB_AUTH_TOKEN=$JSPM_GITHUB_AUTH_TOKEN
-    image: sloppylopez/<%= appName %>:latest
+    image: sloppylopez/whalephant-seed-base:latest
     container_name: node-container
     ports:
       - 8080:8080
-    volumes:
-      - .:/home/<%= appName %>
-      - ./nodemodules_app:/home/<%= appName %>/app/node_modules
-      - ./jspm_packages_app:/home/<%= appName %>/app/jspm_packages
-      - ./github_packages_app:/home/<%= appName %>/app/jspm_packages/github
-      - ./npm_packages_app:/home/<%= appName %>/app/jspm_packages/npm
     environment:
-      - VIRTUAL_HOST=whalephantseed.com
+      - VIRTUAL_HOST=docker.nginx.node.com
       - VIRTUAL_PORT=8080
 
 volumes:

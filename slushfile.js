@@ -90,9 +90,9 @@ gulp.task('default', function (done) {
 
     gulp.src([
       path.join(__dirname, '/templates/**'),
-      path.join('!' + __dirname, '/templates/assets/**'),
       path.join('!' + __dirname, '/templates/server/**'),
-      path.join('!' + __dirname, '/templates/bin/ephimerald-ci/**')])
+      path.join('!' + __dirname, '/templates/bin/ephimerald-ci/**'),
+      path.join('!' + __dirname, '/templates/assets/**')])
       .pipe(template(answers))
       .pipe(rename(function (file) {
         if (file.basename[0] === '_' && file.extname !== '.scss') {
@@ -105,7 +105,11 @@ gulp.task('default', function (done) {
 
     gulp.src([path.join(__dirname, '/templates/bin/ephimerald-ci/**')])
       .pipe(conflict('./'))
-      .pipe(gulp.dest('./bin'));
+      .pipe(gulp.dest('./bin/ephimerald-ci'));
+
+    gulp.src([path.join(__dirname, '/templates/assets/**')])
+      .pipe(conflict('./'))
+      .pipe(gulp.dest('./assets'));
 
     gulp.src([path.join(__dirname, '/templates/server/**')])
       .pipe(conflict('./'))

@@ -1,42 +1,48 @@
 version: '3'
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
-    container_name: nginx-container
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "8080:8080"
+      - "443:443"
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./server/nginx/certs:/etc/nginx/certs
-    links:
-      - node-server:node-server
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
 
-  node-server:
+  node-server-base:
     build:
       context: .
-      dockerfile: Dockerfile
-      args:
-        - JSPM_GITHUB_AUTH_TOKEN=$JSPM_GITHUB_AUTH_TOKEN
-    image: sloppylopez/<%= appName %>:latest
+      dockerfile: Dockerfile.base
+    image: elephantseed/whalephant-seed-base:latest
     command: npm start
-    container_name: node-container
-    ports:
-      - 8080:8080
-      - 5858:5858
-    volumes:
-      - .:/home/<%= appName %>
-      - ./nodemodules_app:/home/<%= appName %>/app/node_modules
-      - ./jspm_packages_app:/home/<%= appName %>/app/jspm_packages
-      - ./github_packages_app:/home/<%= appName %>/app/jspm_packages/github
-      - ./npm_packages_app:/home/<%= appName %>/app/jspm_packages/npm
-    environment:
-      - VIRTUAL_HOST=whalephantseed.com
-      - VIRTUAL_PORT=8080
+    container_name: node-server-base
 
-volumes:
-  nodemodules_server:
-  nodemodules_app:
-  jspm_packages_app:
-  github_packages_app:
-  npm_packages_app:
+#  node-server:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      args:
+#        - JSPM_GITHUB_AUTH_TOKEN=$JSPM_GITHUB_AUTH_TOKEN
+#    image: elephantseed/whalephant-seed:latest
+#    labels:
+#      - "traefik.backend=machine-echo"
+#      - "traefik.frontend.rule=Host:docker.nginx.node.com"
+#    container_name: node-server-container
+#    ports:
+#      - 8000:8000
+#      - 7000:7000
+#      - 5858:5858
+#    volumes:
+#      - ./app:/home/sloppylopez/app
+#      - nodemodules_app:/home/sloppylopez/app/node_modules
+#      - jspm_packages_app:/home/sloppylopez/app/jspm_packages
+#      - github_packages_app:/home/sloppylopez/app/jspm_packages/github
+#      - npm_packages_app:/home/sloppylopez/app/jspm_packages/npm
+#
+#volumes:
+#  nodemodules_app:
+#  jspm_packages_app:
+#  github_packages_app:
+#  npm_packages_app:

@@ -1,38 +1,36 @@
-FROM node:alpine
+FROM elephantseed/whalephant-seed-base:latest
 
 ARG JSPM_GITHUB_AUTH_TOKEN
 
-ENV USER="whalephant"
-ENV YARN_VERSION=0.27.5
+ENV USER="<%= userName %>"
+ENV ELEPHANT_SEED_USER="elephantseed"
 ENV HOME=/home/$USER
+ENV ELEPHANT_SEED_HOME=/home/$ELEPHANT_SEED_USER
+ENV APP_NAME=<%= appName %>
+ENV APP_VERSION=<%= appVersion %>
 ENV LOOK_UP_TIME=480
+ENV NODE_MODULES=/usr/local/lib/node_modules/
+ENV JSPM=node_modules/.bin/jspm
+ENV APP=$HOME/app
+ENV BIN=$ELEPHANT_SEED_HOME/bin
+ENV SERVER=$ELEPHANT_SEED_HOME/server
 
-LABEL vendor=SloppyLopez\
-      com.<%= appName %>.version="<%= appVersion %>" \
-      com.<%= appName %>.release-date="2017-03-25"
+LABEL vendor=$USER\
+      com.$APP_NAME-base.version=$APP_VERSION \
+      com.$APP_NAME-base.release-date="2017-03-25"
 
-#Add user and group
-RUN addgroup -S $USER &&\
-    adduser -S -g $USER $USER
+USER root
+#RUN sh /bin/docker/create-group $USER
+ADD app/ $APP
+RUN chown -R $USER:$USER $APP $BIN $SERVER
 
-#Copy files to container
-COPY package.json yarn.lock $HOME/
-ADD server/ $HOME/server
-COPY app/package.json app/yarn.lock app/config.js $HOME/app/
-RUN chown -R $USER:$USER $HOME/* /usr/lib/node_modules /usr/bin
-
-WORKDIR $HOME
 USER $USER
+WORKDIR $HOME
 
-#Install Server dependencies
-RUN npm i -g yarn@$YARN_VERSION &&\
-    yarn
-
-#Install App dependencies
 RUN cd app &&\
     yarn &&\
-    node_modules/.bin/jspm config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
-    node_modules/.bin/jspm config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
-    node_modules/.bin/jspm i --lock
+    $JSPM config registries.github.timeouts.lookup $LOOK_UP_TIME &&\
+    $JSPM config registries.github.auth $JSPM_GITHUB_AUTH_TOKEN &&\
+    $JSPM i --lock
 
 CMD ["npm", "start"]
